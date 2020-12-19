@@ -3,15 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <mpi.h>
+
 
 #define MAX_STRING 128
 
 int main() {
 
-     MPI_Init(NULL,NULL);
-     int world_rank;
-     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+//     MPI_Init(NULL,NULL);
+//     int world_rank;
+//     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
      MYSQL *conn;
      MYSQL_RES *res;
      MYSQL_ROW row;
@@ -23,8 +23,8 @@ int main() {
      char *datasurname = "test1surname";
      conn = mysql_init(NULL);
      /* Connect to database */
-	int firstRecord;
-	int lastRecord;
+//	int firstRecord;
+//	int lastRecord;
 
      if (!mysql_real_connect(conn, server,
          user, password, database, 0, NULL, 0)) {
@@ -38,13 +38,13 @@ int main() {
 	clock_t begin = clock();
  /*	switch(program_type)
 	{
-		case 1:
+		case 1:*/
 			for(int i = 1000; i < 9999; i++)
 			{	
 			
 				char query[MAX_STRING] = {0};	
 
-				char *name = (char*)malloc(sizeof(char) * 8);
+			/*	char *name = (char*)malloc(sizeof(char) * 8);
 				char name_ext[] = "jack";
 				memcpy(name, name_ext, sizeof(char) * 4);
 				sprintf(name+sizeof(char)*4, "%d", i);
@@ -55,19 +55,18 @@ int main() {
 				memcpy(surname, surname_ext, sizeof(char) * 7);
 				sprintf(surname+sizeof(char)*7, "%d",i);
 		
+*/
 
-
-				snprintf(query, MAX_STRING, "INSERT INTO agi (name, surname) VALUES ('%s', '%s')", name, surname);
+				snprintf(query, MAX_STRING, "INSERT INTO agi (name, surname) VALUES ('testfinal', 'testfinal2')");
 				mysql_query(conn, query);
 				
-				free(name);
-				free(surname);
 			}	
-		break;
+		//break;
 		///---------------------------------------------------------------------------------------------------------------------- //
-		case 2:
+	/*	case 2:
 			
 */
+/*
 			switch(world_rank){
 			case 0:
 				firstRecord = 1;
@@ -116,7 +115,7 @@ int main() {
 					while((row=mysql_fetch_row(temp_res)))
 						printf("%s %s %s\n", row[0], row[1], row[2]);											
 				}
-				mysql_free_result(temp_res);
+				mysql_free_result(temp_res); 
 			//	res = mysql_use_result(conn);
 			//	while((row = mysql_fetch_row(res)) != NULL)
 			//		printf("%s \n", row[0]);
@@ -141,7 +140,7 @@ int main() {
         exit(1);
     }
 */
-    res = mysql_use_result(conn);
+//    res = mysql_use_result(conn);
 
     /* output table name */
 //    printf("MySQL Tables in mysql database:\n");
@@ -149,9 +148,8 @@ int main() {
 //        printf("%s \n", row[0]);
 
     /* close connection */
-    mysql_free_result(res);
+  //  mysql_free_result(res);
     mysql_close(conn);
 
 
-	MPI_Finalize();
 }
