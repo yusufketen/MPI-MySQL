@@ -5,11 +5,7 @@ MySQL 8.022
 # Requirements  
 MPI -> sudo apt install mpich  
 GCC -> gcc -o mysql-test MySQL-Test.c -L/usr/local/mysql/lib -lmysqlclient -lz  
-Install MySQL C Library -> sudo apt-get install libmysqlclient-dev  
-  
-# Misc  
-MySQL Access -> sudo mysql -u root  
-
+MySQL C Library -> sudo apt-get install libmysqlclient-dev  
 
 # How to run
 "make select" : Run select query  
@@ -17,3 +13,6 @@ MySQL Access -> sudo mysql -u root
   
 "make insert" : Run instert query  
 "make insert-mpi" : Run insert query using by MPI  
+  
+# Misc  
+MySQL Access -> sudo mysql -u root  
